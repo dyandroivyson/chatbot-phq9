@@ -1,0 +1,1183 @@
+{
+  "intents": [
+    {
+      "intent": "me-sinto-bem",
+      "examples": [
+        {
+          "text": "alegre"
+        },
+        {
+          "text": "de boas"
+        },
+        {
+          "text": "Estou muito bem"
+        },
+        {
+          "text": "feliz"
+        },
+        {
+          "text": "me sinto bem"
+        },
+        {
+          "text": "tranquilo"
+        },
+        {
+          "text": "tudo na paz"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "nao-me-sinto-bem",
+      "examples": [
+        {
+          "text": "+-"
+        },
+        {
+          "text": "A depressão me pegou"
+        },
+        {
+          "text": "Ansioso"
+        },
+        {
+          "text": "bad"
+        },
+        {
+          "text": "Estou cansado de tudo"
+        },
+        {
+          "text": "Estou me sentindo ansioso"
+        },
+        {
+          "text": "estou pensando muito em suicídio"
+        },
+        {
+          "text": "eu quero morrer"
+        },
+        {
+          "text": "eu vou me suicidar"
+        },
+        {
+          "text": "Hoje acordei muito agitado"
+        },
+        {
+          "text": "mais ou menos"
+        },
+        {
+          "text": "mal"
+        },
+        {
+          "text": "Muita deprê"
+        },
+        {
+          "text": "não estou legal"
+        },
+        {
+          "text": "Não me sinto bem hoje"
+        },
+        {
+          "text": "não muito bem"
+        },
+        {
+          "text": "Não queria sair da cama"
+        },
+        {
+          "text": "triste"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "dificuldade",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "0",
+          "synonyms": [
+            "0",
+            "não",
+            "nenhuma",
+            "Nenhuma dificuldade",
+            "zero"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "1",
+          "synonyms": [
+            "1",
+            "pouca",
+            "Pouca dificuldade",
+            "quase nada",
+            "quase nenhuma"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "2",
+          "synonyms": [
+            "2",
+            "mais do que eu gostaria",
+            "muita",
+            "Muita dificuldade",
+            "quase sempre"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "3",
+          "synonyms": [
+            "3",
+            "demais",
+            "extrema",
+            "Extrema dificuldade",
+            "impossível"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "periodicidade",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "0",
+          "synonyms": [
+            "0",
+            "não",
+            "Nenhum dia",
+            "zero"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "1",
+          "synonyms": [
+            "1",
+            "de dois a três dias",
+            "dois dias",
+            "menos de uma semana",
+            "poucos dias",
+            "um dia"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "2",
+          "synonyms": [
+            "2",
+            "apenas uma semana",
+            "só uma semana",
+            "uma semana e dois dias",
+            "uma semana e um dia",
+            "uma semana ou mais",
+            "uma única semana",
+            "um pouco mais de uma semana"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "3",
+          "synonyms": [
+            "3",
+            "direto",
+            "Quase todos os dias",
+            "sempre",
+            "todo dia",
+            "todos os dias"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Como você se sente?",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Eu sou o Mood, seu assistente emocional! Como você está se sentindo hoje?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_8_1626353201513",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1626354301965",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1626354301976",
+      "previous_sibling": "handler_3_1626354301976"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1625408090160",
+      "context": {
+        "Q1": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_1_1625408090164"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626354233158",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1626354233191",
+      "previous_sibling": "handler_6_1626354233191"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1626354326211",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1626354326223",
+      "previous_sibling": "handler_3_1626354326223"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626354348873",
+      "context": {
+        "Q8": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_1_1626354348886"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354440211",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1626354440223",
+      "previous_sibling": "handler_5_1626354440223"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1625408090160",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1625408090164",
+      "previous_sibling": "handler_1_1625408090164"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1626354301965",
+      "context": {
+        "Q6": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_3_1626354301976"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1626354326211",
+      "context": {
+        "Q7": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_3_1626354326223"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354261064",
+      "context": {
+        "Q4": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_4_1626354261076"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1625408127561",
+      "context": {
+        "Q2": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_5_1625408127576"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354440211",
+      "context": {
+        "Q9": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_5_1626354440223"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626354233158",
+      "context": {
+        "Q3": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_6_1626354233191"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354280944",
+      "context": {
+        "Q5": "@periodicidade"
+      },
+      "conditions": "@periodicidade",
+      "event_name": "input",
+      "dialog_node": "handler_7_1626354280967"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1626354348873",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1626354348886",
+      "previous_sibling": "handler_1_1626354348886"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1625408127561",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1625408127576",
+      "previous_sibling": "handler_5_1625408127576"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354280944",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1626354280967",
+      "previous_sibling": "handler_7_1626354280967"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1626354261064",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1626354261076",
+      "previous_sibling": "handler_4_1626354261076"
+    },
+    {
+      "type": "frame",
+      "title": "Interesse em fazer as coisas",
+      "output": {
+        "generic": [
+          {
+            "title": "Com que frequência você se sente desinteressado(a) em fazer as coisas?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "context": {
+        "Q1": 0,
+        "Q2": 0,
+        "Q3": 0,
+        "Q4": 0,
+        "Q5": 0,
+        "Q6": 0,
+        "Q7": 0,
+        "Q8": 0,
+        "Q9": 0,
+        "resultado": 0
+      },
+      "conditions": "#nao-me-sinto-bem",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_2_1625321593713",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Sem depressão",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sempre que pensar em desistir, lembre que você já chegou longe e pode continuar. Não deixe que nada te impeça de sonhar."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625333384147",
+      "conditions": "$resultado <= 4",
+      "dialog_node": "node_2_1625400428698",
+      "previous_sibling": "slot_9_1626354440211"
+    },
+    {
+      "type": "standard",
+      "title": "Depressão moderadamente grave",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu te entendo e posso te ajudar! Estou preparando alguns exercícios para fazermos juntos!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625333384147",
+      "conditions": "$resultado >= 15 && $resultado <= 19",
+      "dialog_node": "node_2_1626379522598",
+      "previous_sibling": "node_6_1626379482818"
+    },
+    {
+      "type": "standard",
+      "title": "Depressão grave",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Você não está sozinho! Eu posso chamar um especialista para participar da nossa conversa?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625333384147",
+      "conditions": "$resultado >= 20",
+      "dialog_node": "node_2_1626379560846",
+      "previous_sibling": "node_2_1626379522598"
+    },
+    {
+      "type": "frame",
+      "title": "Cansaço",
+      "output": {
+        "generic": [
+          {
+            "title": "Entendo. Com que frequência se sentiu cansado(a)?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_7_1625322052421",
+      "context": {
+        "resultado": "<? $resultado + ($Q3 ? $Q3 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_3_1625322209077",
+      "previous_sibling": "slot_2_1625408127561"
+    },
+    {
+      "type": "frame",
+      "title": "Se ferir",
+      "output": {
+        "generic": [
+          {
+            "title": "É uma situação triste, mas você percebeu alguma frequência em se ferir de alguma maneira ou achar que seria melhor está morto(a)?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_5_1625333263012",
+      "context": {
+        "resultado": "<? $resultado + ($Q8 ? $Q8 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_3_1625333308748",
+      "previous_sibling": "slot_10_1626354326211"
+    },
+    {
+      "type": "frame",
+      "title": "Trabalho",
+      "output": {
+        "generic": [
+          {
+            "title": "Por causa de tudo o que você está passando, você sentiu alguma dificuldade de fazer as coisas do seu dia-a-dia?",
+            "options": [
+              {
+                "label": "Nenhuma dificuldade",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Pouca dificuldade",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Muita dificuldade",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Extrema dificuldade",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_3_1625333308748",
+      "context": {
+        "resultado": "<? $resultado + ($Q9 ? $Q9 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_3_1625333384147",
+      "previous_sibling": "slot_6_1626354348873"
+    },
+    {
+      "type": "frame",
+      "title": "Decepção",
+      "output": {
+        "generic": [
+          {
+            "title": "Certo. Com que frequência você se sentiu mal consigo mesmo(a)?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_8_1625333122811",
+      "context": {
+        "resultado": "<? $resultado + ($Q5 ? $Q5 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_4_1625333179338",
+      "previous_sibling": "slot_9_1626354261064"
+    },
+    {
+      "type": "frame",
+      "title": "Agitação",
+      "output": {
+        "generic": [
+          {
+            "title": "Não desanime! Com que frequência você se sentiu relaxado, ou ao contrário, agitado mais do que de costume?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_6_1625333221185",
+      "context": {
+        "resultado": "<? $resultado + ($Q7 ? $Q7 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_5_1625333263012",
+      "previous_sibling": "slot_7_1626354301965"
+    },
+    {
+      "type": "frame",
+      "title": "Concentração",
+      "output": {
+        "generic": [
+          {
+            "title": "Com que frequência teve dificuldade de se concentrar em algo?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_4_1625333179338",
+      "context": {
+        "resultado": "<? $resultado + ($Q6 ? $Q6 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_6_1625333221185",
+      "previous_sibling": "slot_9_1626354280944"
+    },
+    {
+      "type": "standard",
+      "title": "Depressão moderada",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Se por algum motivo você estiver triste, se a vida te deu uma rasteira e a outra pessoa sofrer o seu sofrimento, chorar as suas lágrimas e enxugá-las com ternura, que coisa maravilhosa: você poderá contar com ela em qualquer momento de sua vida."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625333384147",
+      "conditions": "$resultado >= 10 && $resultado <= 14",
+      "dialog_node": "node_6_1626379482818",
+      "previous_sibling": "node_8_1626379405672"
+    },
+    {
+      "type": "frame",
+      "title": "Deprimido ou sem perspectiva",
+      "output": {
+        "generic": [
+          {
+            "title": "Com que frequência se sentiu para baixo?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_2_1625321593713",
+      "context": {
+        "resultado": "<? $resultado + ($Q1 ? $Q1 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_7_1625321901728"
+    },
+    {
+      "type": "frame",
+      "title": "Dificuldade em dormir",
+      "output": {
+        "generic": [
+          {
+            "title": "Com que frequência  se sentiu sonolento(a) ou teve insônia?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          },
+          {
+            "values": [
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1625321901728",
+      "context": {
+        "resultado": "<? $resultado + ($Q2 ? $Q2 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_7_1625322052421",
+      "previous_sibling": "slot_7_1625408090160"
+    },
+    {
+      "type": "frame",
+      "title": "Falta de apetite",
+      "output": {
+        "generic": [
+          {
+            "title": "Com que frequência teve falta de apetite ou comeu demais?",
+            "options": [
+              {
+                "label": "Nenhum dia",
+                "value": {
+                  "input": {
+                    "text": "0"
+                  }
+                }
+              },
+              {
+                "label": "Menos de uma semana",
+                "value": {
+                  "input": {
+                    "text": "1"
+                  }
+                }
+              },
+              {
+                "label": "Uma semana ou mais",
+                "value": {
+                  "input": {
+                    "text": "2"
+                  }
+                }
+              },
+              {
+                "label": "Quase todos os dias",
+                "value": {
+                  "input": {
+                    "text": "3"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_3_1625322209077",
+      "context": {
+        "resultado": "<? $resultado + ($Q4 ? $Q4 : 0) ?>"
+      },
+      "conditions": "true",
+      "dialog_node": "node_8_1625333122811",
+      "previous_sibling": "slot_6_1626354233158"
+    },
+    {
+      "type": "standard",
+      "title": "Motivação",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A persistência é o caminho do êxito."
+              },
+              {
+                "text": "Lute. Acredite. Conquiste. Perca. Deseje. Espere. Alcance. Invada. Caia. Seja tudo o quiser ser, mas acima de tudo, seja você sempre."
+              },
+              {
+                "text": "Se você quer um pedacinho do paraíso, acredite em Deus. Mas se você quer conquistar o mundo, acredite em você porque Deus já te deu tudo o que você precisa para você vencer."
+              },
+              {
+                "text": "Jamais desista das pessoas que ama. Jamais desista de ser feliz. Lute sempre pelos seus sonhos. Seja profundamente apaixonado pela vida. Pois a vida é um espetáculo imperdível."
+              },
+              {
+                "text": "Você tem um sonho? Não deixe os outros te derrubarem, lute por aquilo que você acredita."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#me-sinto-bem",
+      "dialog_node": "node_8_1626353201513",
+      "previous_sibling": "node_2_1625321593713"
+    },
+    {
+      "type": "standard",
+      "title": "Depressão leve",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nunca se esqueça que você merece ser muito feliz."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625333384147",
+      "conditions": "$resultado >= 5 && $resultado <= 9",
+      "dialog_node": "node_8_1626379405672",
+      "previous_sibling": "node_2_1625400428698"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1625333263012",
+      "variable": "$Q7",
+      "dialog_node": "slot_10_1626354326211"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1625322052421",
+      "variable": "$Q2",
+      "dialog_node": "slot_2_1625408127561"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1625322209077",
+      "variable": "$Q3",
+      "dialog_node": "slot_6_1626354233158"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1625333308748",
+      "variable": "$Q8",
+      "dialog_node": "slot_6_1626354348873"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1625321901728",
+      "variable": "$Q1",
+      "dialog_node": "slot_7_1625408090160"
+    },
+    {
+      "type": "slot",
+      "parent": "node_6_1625333221185",
+      "variable": "$Q6",
+      "dialog_node": "slot_7_1626354301965"
+    },
+    {
+      "type": "slot",
+      "parent": "node_8_1625333122811",
+      "variable": "$Q4",
+      "dialog_node": "slot_9_1626354261064"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1625333179338",
+      "variable": "$Q5",
+      "dialog_node": "slot_9_1626354280944"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1625333384147",
+      "variable": "$Q9",
+      "dialog_node": "slot_9_1626354440211"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores"
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Mood",
+  "language": "pt-br",
+  "description": ""
+}
